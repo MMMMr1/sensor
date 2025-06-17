@@ -1,0 +1,53 @@
+version: '3.5'
+services:
+  database-monitor:
+    image: postgres:15.2-alpine
+    platform: linux/amd64
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: pass
+    networks:
+      - monitor_sensor
+  monitor-sensors:
+    build: ./monitor-sensors
+    container_name: monitor-sensors
+    image: monitor-sensors-service:1.0.0
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: pass
+      SPRING_DATASOURCE_URL: jdbc:postgresql://database-monitor:5432/postgres
+      JWT_SECRET: FSmFQ0tNPt79eHKSiuaxu0Kwtie6El27XyVCPwTvlFU
+      JWT_ISSUER: SpringSecurityExample
+    depends_on:
+      - database-monitor
+    ports:
+      - 8080:8080
+    networks:
+      - monitor_sensor
+  database-statistics:
+    image: postgres:15.2-alpine
+    platform: linux/amd64
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: pass
+    networks:
+      - monitor_sensor
+  statistic:
+    build: ./statistics
+    container_name: statistics
+    image: statistics:1.0.0
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: pass
+      SPRING_DATASOURCE_URL: jdbc:postgresql://database-statistics:5432/postgres
+    depends_on:
+      - database-statistics
+    ports:
+      - 8081:8080
+    networks:
+      - monitor_sensor
+networks:
+  monitor_sensor:
+    name: monitor_sensor
