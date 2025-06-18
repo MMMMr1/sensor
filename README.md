@@ -1,4 +1,4 @@
-# Sensor Monitoring and Statistics Services
+# Sensor monitoring and statistics services
 
 ## Overview
 This project consists of two main services:
