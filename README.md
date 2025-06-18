@@ -3,8 +3,8 @@
 ## Overview
 This project consists of two main services:
 
-- **monitor-sensors** – Manages and displays sensors, sensor types, and units. Includes user registration and authentication. 
-- **statistics** – Collects and processes sensor statistics daily, storing historical data for analysis.
+- **monitor-sensors** – manages and displays sensors, sensor types, and units. Includes user registration and authentication. 
+- **statistics** – collects and processes sensor statistics daily, storing historical data for analysis.
 
 For detailed documentation on each service, refer to their respective README files.
 
