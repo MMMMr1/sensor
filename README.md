@@ -8,18 +8,18 @@ This project consists of two main services:
 
 For detailed documentation on each service, refer to their respective README files.
 
-Docker Setup
+## Docker Setup
 To build and run the services using Docker, follow these steps:
 
-1. Build projects and install the generated .jar files into the local Maven repository
+#### 1. Build projects and install the generated .jar files into the local Maven repository
 ```bash
 mvn clean install
 ``` 
-2. Docker build
+#### 2. Docker build
 ```bash
 docker-compose build
 ``` 
-3. Start the services
+#### 3. Start the services
 ```bash
 docker-compose up
 ``` 
